@@ -13,7 +13,6 @@ export const watch = async(req, res) => {
   }
   return res.render("watch", { pageTitle: video.title, video });
 };
-
 export const getEdit = async(req, res) => {
   const { id } = req.params;
   const video = await Video.findById(id);
@@ -22,7 +21,6 @@ export const getEdit = async(req, res) => {
   }
   return res.render("edit", { pageTitle: `Edit: ${video.title}`, video });
 };
-
 export const postEdit = async(req, res) => {
   const { id } = req.params;
   const { title, description, hashtags } = req.body;
@@ -37,11 +35,9 @@ export const postEdit = async(req, res) => {
   });
   return res.redirect(`/videos/${id}`);
 };
-
 export const getUpload = (req, res) => {
   return res.render("upload", { pageTitle: "Upload Video" });
 };
-
 export const postUpload = async(req, res) => {
   const { title, description, hashtags } = req.body;
   try {
@@ -65,15 +61,10 @@ export const deleteVideo = async (req, res) => {
   return res.redirect("/");
 };
 
-export const search = async (req, res) => {
+export const search = (req, res) => {
   const { keyword } = req.query;
-  let videos = [];
   if (keyword) {
-    videos = await Video.find({
-      title: {
-        $regex: new RegExp(`${keyword}$`, "i"),
-      },
-    });
+    // search
   }
-  return res.render("search", { pageTitle: "Search", videos });
+  return res.render("search", { pageTitle: "Search" });
 };
