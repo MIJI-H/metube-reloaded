@@ -26,7 +26,6 @@ app.use(
       next();
     });
   });
- 
 app.use("/", globalRouter);
 app.use("/videos", videoRouter);
 app.use("/users", userRouter);
