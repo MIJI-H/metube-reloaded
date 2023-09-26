@@ -12,7 +12,7 @@ import {
   import {
     protectorMiddleware,
     publicOnlyMiddleware,
-    avatarUpload,
+    uploadFiles,
   } from "../middlewares";
 
 const userRouter = express.Router();
@@ -26,9 +26,9 @@ userRouter
   .route("/edit")
   .all(protectorMiddleware)
   .get(getEdit)
-  .post(avatarUpload.single("avatar"), postEdit);
+  .post(uploadFiles.single("avatar"), postEdit);
 userRouter.get("/github/start", publicOnlyMiddleware, startGithubLogin);
 userRouter.get("/github/finish", publicOnlyMiddleware, finishGithubLogin);
-userRouter.get("/:id", see);
+userRouter.get(":id", see);
 
 export default userRouter;
