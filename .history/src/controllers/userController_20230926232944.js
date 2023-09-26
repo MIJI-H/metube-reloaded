@@ -146,27 +146,10 @@ export const postEdit = async (req, res) => {
     },
     body: { name, email, username, location },
   } = req;
-  const updatedUser = await User.findByIdAndUpdate(
-    _id,
-    {
-      name,
-      email,
-      username,
-      location,
-    },
-    { new: true }
-  );
-  req.session.user = updatedUser;
-  return res.redirect("/users/edit");
-};
-export const getChangePassword = (req, res) => {
-  if (req.session.user.socialOnly === true) {
-    return res.redirect("/");
-  }
-  return res.render("users/change-password", { pageTitle: "Change Password" });
-};
-export const postChangePassword = (req, res) => {
-  // send notification
-  return res.redirect("/");
-};
+  await User.findByIdAndUpdate(_id, {
+    name,
+    email,
+    username,
+    location,
+  });
 export const see = (req, res) => res.send("See User");
