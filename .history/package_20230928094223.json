@@ -4,7 +4,6 @@
   "description": "The best way to watch videos",
   "main": "init.js",
   "scripts": {
-    "start": "node build/init.js",
     "build:server": "babel src -d build",
     "dev:server": "nodemon",
     "dev:assets": "webpack"
