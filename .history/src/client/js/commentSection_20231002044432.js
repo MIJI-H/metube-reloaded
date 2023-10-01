@@ -5,33 +5,17 @@ const deleteIcon = document.querySelectorAll(".delete__icon");
 const addComment = (text,id) => {
     const videoComments = document.querySelector(".video__comments ul");
     const newComment = document.createElement("li");
-
     newComment.dataset.id = id;
 
-  //   newComment.className = "video__comment";
-  //   const icon = document.createElement("i");
-  //   icon.className = "fas fa-comment";
-  //   const span = document.createElement("span");
-  //   span.innerText = ` ${text}`;
-  //   const span2 = document.createElement("span");
-  // span2.innerText = "❌";
-  const icon = document.createElement("i");
-	const span = document.createElement("span");
-	const deleteIcon = document.createElement("span");
-
-	newComment.className = "video__comment";
-	icon.className = "comment__icon";
-	deleteIcon.className = "delete__icon";
-
-	newComment.appendChild(icon);
-	icon.innerText = "💛";
-
-	span.innerText = ` ${text}`;
-	deleteIcon.innerText = "❌";
-
-    // newComment.appendChild(icon);
+    newComment.className = "video__comment";
+    const icon = document.createElement("i");
+    icon.className = "fas fa-comment";
+    const span = document.createElement("span");
+    span.innerText = ` ${text}`;
+    const span2 = document.createElement("span");
+  span2.innerText = "❌";
+    newComment.appendChild(icon);
     newComment.appendChild(span);
-    newComment.appendChild(deleteIcon);
     videoComments.prepend(newComment);
     deleteIcon.addEventListener("click", handleDelete);
   };
@@ -58,27 +42,7 @@ const handleSubmit = async(event) => {
   }
 
 };
-const handleDelete = async (event) => {
-	const deleteComment = event.target.parentElement;
 
-	const {
-		dataset: { id },
-	} = event.target.parentElement;
-
-	const videoId = videoContainer.dataset.id;
-
-	const response = await fetch(`/api/videos/${videoId}/comment/delete`, {
-		method: "DELETE",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify({ commentId: id }),
-	});
-
-	if (response.status === 200) {
-		deleteComment.remove();
-	}
-};
 if (form) {
     form.addEventListener("submit", handleSubmit);
   }

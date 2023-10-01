@@ -29,9 +29,8 @@ const addComment = (text,id) => {
 	span.innerText = ` ${text}`;
 	deleteIcon.innerText = "❌";
 
-    // newComment.appendChild(icon);
+    newComment.appendChild(icon);
     newComment.appendChild(span);
-    newComment.appendChild(deleteIcon);
     videoComments.prepend(newComment);
     deleteIcon.addEventListener("click", handleDelete);
   };
@@ -58,27 +57,7 @@ const handleSubmit = async(event) => {
   }
 
 };
-const handleDelete = async (event) => {
-	const deleteComment = event.target.parentElement;
 
-	const {
-		dataset: { id },
-	} = event.target.parentElement;
-
-	const videoId = videoContainer.dataset.id;
-
-	const response = await fetch(`/api/videos/${videoId}/comment/delete`, {
-		method: "DELETE",
-		headers: {
-			"Content-Type": "application/json",
-		},
-		body: JSON.stringify({ commentId: id }),
-	});
-
-	if (response.status === 200) {
-		deleteComment.remove();
-	}
-};
 if (form) {
     form.addEventListener("submit", handleSubmit);
   }

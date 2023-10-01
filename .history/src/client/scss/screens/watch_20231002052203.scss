@@ -26,7 +26,12 @@
     width: 100%;
     margin: 0 auto;
     margin-top: 20px;
-    
+    .video__comment-delete {
+      font-size: 11px;
+      color: $gray;
+      text-align: center;
+      margin: 15px 0px;
+    }
     .video__comment {
       padding: 10px;
       border-radius: 9999px;
